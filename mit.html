@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT Reimagined </title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container">
+      <h1>MIT</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+   
+    <section id="home" class="slider">
+      <div class="slide active" data-title="Massachusetts Institute of Technology">
+        <div class="slide-bg" style="background-image: url('path/to/mit-video.mp4');"></div>
+        <div class="slide-content" data-animation="fadeIn">
+          <h2>Massachusetts Institute of Technology</h2>
+        </div>
+      </div>
+      <div class="slide" data-title="Harvard University">
+        <div class="slide-bg" style="background-image: url('path/to/mit-image.png');"></div>
+        <div class="slide-content" data-animation="fadeIn">
+          <h2>Best University in the World</h2>
+        </div>
+      </div>
+      <div class="slide" data-title="Stanford University">
+        <div class="slide-bg" style="background-image: url('path/to/This\ is\ MIT\ -\ Massachusetts\ Institute\ of\ Technology\ \(MIT\)\ \(1080p\,\ h264\).mp4');"></div>
+        <div class="slide-content" data-animation="fadeIn">
+          <h2></h2>
+        </div>
+      </div>
+    </section>
+    <div class="slider-controls">
+      <button class="prev">‹</button>
+      <button class="next">›</button>
+    </div>
+  </main>
+
+  <script>
+
+    const slides = document.querySelectorAll('.slide');
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    let current = 0;
+
+    function updateSlides(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+     
+      const content = slides[index].querySelector('.slide-content');
+      content.classList.remove('animate');
+      void content.offsetWidth;
+      content.classList.add('animate');
+    }
+
+    nextBtn.addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      updateSlides(current);
+    });
+    prevBtn.addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      updateSlides(current);
+    });
+    updateSlides(current);
+  </script>
+</body>
+</html>
